@@ -18,6 +18,55 @@ function App() {
             magic: 75,
             power: 40,
         },
+        {
+            image: "orc.jpg",
+            name: "Orc",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
+        {
+            image: "elfe.jpg",
+            name: "Shanra",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
+        {
+            image: "chevalier.jpg",
+            name: "Mazabé",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
+        {
+            image: "dragon.jpg",
+            name: "Dracula",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
+        {
+            image: "sorcier.jpg",
+            name: "Merlin",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
+        {
+            image: "magicien_glace.jpg",
+            name: "Snowmann",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
+        {
+            image: "sorciere_feu.jpg",
+            name: "Tasuma",
+            health: 50,
+            magic: 75,
+            power: 40,
+        },
     ];
 
     return (
