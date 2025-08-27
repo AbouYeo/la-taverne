@@ -1,3 +1,4 @@
+import Button from "./Button";
 import Statistiques from "./Statistiques";
 
 type CardProps = {
@@ -21,11 +22,12 @@ export default function Card({ character }: CardProps) {
 
     console.table(character);
     return (
-        <div className="ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden customShadow rounded-xl">
-            <div className="w-[250px] h-[250px] overflow-hidden">
+        <div className="ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden customShadow rounded-xl hover:scale-105 duration-300">
+            <div className="w-[250px] h-[250px] overflow-hidden hover:">
                 <img
                     src={`/src/assets/images/personnages/${character.image}`}
-                    alt=""
+                    alt={`avatar ${character.name}`}
+                    className="object-cover duration-300 hover:scale-105"
                 />
             </div>
             <div className="p-2">
@@ -43,12 +45,10 @@ export default function Card({ character }: CardProps) {
                     ))}
                 </div>
                 <div className="flex justify-between mt-2">
-                    <button className="bg-blue-500 rounded-xl border-2 border-neutral-400 hover:border-neutral-700 hover:opacity-90 duration-300 px-2 py-1">
+                    <Button color="bg-[#F194B4] hover:bg-red-600">
                         Attaquer
-                    </button>
-                    <button className="bg-orange-500 rounded-xl border-2 border-neutral-400 hover:border-neutral-700 hover:opacity-90 duration-300 px-2 py-1">
-                        Defendre
-                    </button>
+                    </Button>
+                    <Button color="bg-blue-400">Defendre</Button>
                 </div>
             </div>
         </div>

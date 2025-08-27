@@ -1,85 +1,32 @@
-import Card from "./components/Card";
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Layout from "./components/Layout";
+import AllCharactersAPI from "./pages/all-characters-api/AllCharactersAPI";
+import AllCharactersLocal from "./pages/all-characters/AllCharactersLocal";
+import Homepage from "./pages/homepage/Homepage";
 
 function App() {
-    const allCharacters = [
+    const routes = createBrowserRouter([
         {
-            image: "heros.jpg",
-            name: "Kikisan",
-            health: 40,
-            magic: 35,
-            power: 60,
+            path: "/",
+            element: <Layout />,
+            children: [
+                {
+                    index: true,
+                    element: <Homepage />,
+                },
+                {
+                    path: "tous-les-combattants-local",
+                    element: <AllCharactersLocal />,
+                },
+                {
+                    path: "tous-les-combattants-api",
+                    element: <AllCharactersAPI />,
+                },
+            ],
         },
-        {
-            image: "magicienne.jpg",
-            name: "Karaba",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "orc.jpg",
-            name: "Orc",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "elfe.jpg",
-            name: "Shanra",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "chevalier.jpg",
-            name: "Mazabé",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "dragon.jpg",
-            name: "Dracula",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "sorcier.jpg",
-            name: "Merlin",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "magicien_glace.jpg",
-            name: "Snowmann",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-        {
-            image: "sorciere_feu.jpg",
-            name: "Tasuma",
-            health: 50,
-            magic: 75,
-            power: 40,
-        },
-    ];
+    ]);
 
-    return (
-        <main className="flex flex-col justify-between min-h-svh">
-            <Navbar />
-            <section className="flex justify-center items-center gap-8 flex-wrap">
-                {allCharacters.map((oneCharacter, index) => (
-                    <Card key={index} character={oneCharacter} />
-                ))}
-            </section>
-            <Footer />
-        </main>
-    );
+    return <RouterProvider router={routes} />;
 }
 
 export default App;
