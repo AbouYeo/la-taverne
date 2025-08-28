@@ -1,6 +1,7 @@
 import { useState } from "react";
-import ImageInput from "./ImageInput";
-import SideInput from "./SideInput copy";
+import ImageInput from "../../components/form-components/ImageInput";
+import Input from "../../components/form-components/Input";
+import SideInput from "../../components/form-components/SideInput copy";
 
 export default function NewCharacter() {
     const [name, setName] = useState("");
@@ -40,16 +41,11 @@ export default function NewCharacter() {
                 className="flex flex-col rounded border border-neutral-500 p-3"
             >
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
-                    <label htmlFor="name" className="block">
-                        {" "}
-                        Nom:
-                    </label>
-                    <input
+                    <Input
+                        label="Nom"
                         type="text"
-                        id="name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="border rounded w-full bg-white px-2"
+                        state={name}
+                        setState={setName}
                     />
                 </div>
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
@@ -61,42 +57,27 @@ export default function NewCharacter() {
                 </div>
 
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
-                    <label htmlFor="health" className="block">
-                        {" "}
-                        Santé:
-                    </label>
-                    <input
+                    <Input
+                        label="Santé"
                         type="number"
-                        id="health"
-                        value={health}
-                        onChange={(e) => setHealth(e.target.value)}
-                        className="border rounded w-full bg-white px-2"
+                        state={health}
+                        setState={setHealth}
                     />
                 </div>
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
-                    <label htmlFor="magic" className="block">
-                        {" "}
-                        Magie:
-                    </label>
-                    <input
+                    <Input
+                        label="Magie"
                         type="number"
-                        id="magic"
-                        value={magic}
-                        onChange={(e) => setMagic(e.target.value)}
-                        className="border rounded w-full bg-white px-2"
+                        state={magic}
+                        setState={setMagic}
                     />
                 </div>
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
-                    <label htmlFor="power" className="block">
-                        {" "}
-                        Puissance:
-                    </label>
-                    <input
+                    <Input
+                        label="Puissance"
                         type="number"
-                        id="power"
-                        value={power}
-                        onChange={(e) => setPower(e.target.value)}
-                        className="border rounded w-full bg-white px-2"
+                        state={power}
+                        setState={setPower}
                     />
                 </div>
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
