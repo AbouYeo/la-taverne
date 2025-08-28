@@ -1,5 +1,6 @@
 import { useState } from "react";
-import SideInput from "./sideInput";
+import ImageInput from "./ImageInput";
+import SideInput from "./SideInput copy";
 
 export default function NewCharacter() {
     const [name, setName] = useState("");
@@ -52,18 +53,13 @@ export default function NewCharacter() {
                     />
                 </div>
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
-                    <label htmlFor="image" className="block">
-                        {" "}
-                        Avatar:
-                    </label>
-                    <input
-                        type="text"
-                        id="image"
-                        value={image}
-                        onChange={(e) => setImage(e.target.value)}
-                        className="border rounded w-full bg-white px-2"
+                    <ImageInput
+                        label="Avatar"
+                        image={image}
+                        setImage={setImage}
                     />
                 </div>
+
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
                     <label htmlFor="health" className="block">
                         {" "}
@@ -104,7 +100,11 @@ export default function NewCharacter() {
                     />
                 </div>
                 <div className="border border-neutral-300 rounded p-3 mb-2 w-full">
-                    <SideInput label="Coté de la force" setSide={setSide} />
+                    <SideInput
+                        label="Coté de la force"
+                        side={side}
+                        setSide={setSide}
+                    />
                 </div>
 
                 <button

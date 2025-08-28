@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 
 type SideProps = {
     label: string;
+    side: string;
     setSide: (value: string) => void;
 };
 
-export default function SideInput({ label, setSide }: SideProps) {
+export default function SideInput({ label, side, setSide }: SideProps) {
     type Classe = {
         id: number;
         side: string;
@@ -31,12 +32,12 @@ export default function SideInput({ label, setSide }: SideProps) {
             <select
                 name="side"
                 title="side"
-                value={""}
+                value={side}
                 onChange={(e) => setSide(e.target.value)}
                 className="bg-white px-2 rounded border w-full"
             >
                 <option disabled value="">
-                    Selectionner un coté de la force
+                    Selectionner un coté de la force 🔽
                 </option>
 
                 {classes.map((classe) => (
