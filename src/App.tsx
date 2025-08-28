@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import AllCharactersAPI from "./pages/all-characters-api/AllCharactersAPI";
 import AllCharactersLocal from "./pages/all-characters/AllCharactersLocal";
+import CreateCharacter from "./pages/create-character/CreateCharacter";
 import Homepage from "./pages/homepage/Homepage";
 
 function App() {
@@ -21,6 +22,10 @@ function App() {
                 {
                     path: "tous-les-combattants-api",
                     element: <AllCharactersAPI />,
+                },
+                {
+                    path: "/nouveau-character",
+                    element: <CreateCharacter />,
                 },
             ],
         },
