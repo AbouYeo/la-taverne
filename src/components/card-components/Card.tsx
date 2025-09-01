@@ -1,16 +1,9 @@
+import type { Character } from "../../pages/utilitis/Types";
 import Button from "./Button";
 import Statistiques from "./Statistiques";
 
 type CardProps = {
     character: Character;
-};
-
-type Character = {
-    image: string;
-    name: string;
-    health: number;
-    magic: number;
-    power: number;
 };
 
 export default function Card({ character }: CardProps) {
@@ -22,20 +15,28 @@ export default function Card({ character }: CardProps) {
 
     console.table(character);
     return (
-        <div className="ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden customShadow rounded-xl hover:scale-105 duration-300">
+        <div
+            className={`ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden rounded-xl hover:scale-105 duration-300 shadow-${character.side}`}
+        >
             <div className="w-[250px] h-[250px] overflow-hidden hover:">
                 <img
-                    src={`/src/assets/images/personnages/${character.image}`}
+                    src={character.image}
                     alt={`avatar ${character.name}`}
                     className="object-cover duration-300 hover:scale-105"
                 />
             </div>
             <div className="p-2">
                 <div>
-                    <p className="font-bold text-xl text-center">
-                        {character.name}
-                    </p>
-
+                    <div className="flex justify-between">
+                        <p>{/*espace pour centrer le nom*/}</p>
+                        <p className="font-bold text-xl text-center">
+                            {character.name}
+                        </p>
+                        <p className="text-neutral-500 opacity-60 italic">
+                            {" "}
+                            {character.from}
+                        </p>
+                    </div>
                     {allStats.map((oneStat) => (
                         <Statistiques
                             stat={oneStat.stat}

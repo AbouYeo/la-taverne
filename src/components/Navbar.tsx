@@ -6,17 +6,14 @@ export default function Navbar() {
             text: "Accueil",
             path: "/",
         },
-        {
-            text: "Combattants locaux",
-            path: "/tous-les-combattants-local",
-        },
+
         {
             text: "Combattants API",
             path: "/tous-les-combattants-api",
         },
         {
-            text: "Créer",
-            path: "/nouveau-character",
+            text: "Combattants locaux",
+            path: "/combattants-du-localstorage",
         },
     ];
     return (
@@ -24,12 +21,12 @@ export default function Navbar() {
             <Link className="hover:customShadow" to="/">
                 La Taverne des Combattants
             </Link>
-            <div className="flex justify-between gap-4">
+            <div className="flex justify-between gap-4 flex-wrap">
                 {allLinks.map((oneLink) => (
                     <NavLink
                         key={oneLink.text}
                         className={({ isActive }) =>
-                            `text-xl hover:bg-neutral-200 px-2 py-1 rounded-md ${
+                            `max-sm:text-xs md:text-xl  hover:bg-neutral-200 px-2 py-1 rounded-md ${
                                 isActive ? "underline" : ""
                             }`
                         }

@@ -16,9 +16,20 @@ export default function SideInput({ label, side, setSide }: SideProps) {
 
     const url = "https://la-taverne.ducompagnon.fr/api/classes";
     const fetchClasses = async () => {
-        const response = await fetch(url);
-        const data = await response.json();
-        setClasses(data);
+        try {
+            const response = await fetch(url);
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(
+                    `Probleme de connexion à l´API ${response.status}`
+                );
+            }
+            setClasses(data);
+        } catch (error) {
+            console.error(
+                `Erreur lors de la récuperation des données ${error}`
+            );
+        }
     };
     useEffect(() => {
         fetchClasses();

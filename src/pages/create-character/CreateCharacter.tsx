@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
 import ImageInput from "../../components/form-components/ImageInput";
 import Input from "../../components/form-components/Input";
 import SideInput from "../../components/form-components/SideInput copy";
@@ -13,6 +14,17 @@ export default function NewCharacter() {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (name.length < 3) {
+            toast.error("Nom trop court!");
+            return;
+        }
+        if (Number(health) < 0) {
+            toast.error("La santé ne peut pas être negative!");
+        }
+        if (Number(power) < 0) {
+            toast.error("La puissance ne peut pas être negative!");
+        }
+
         const newCharacter = {
             name,
             image,
@@ -20,13 +32,23 @@ export default function NewCharacter() {
             magic: parseInt(magic),
             power: parseInt(power),
             side,
+            from: "local",
         };
+        toast.success("Combattant créé avec succès!");
 
         setName("");
+        setImage("");
         setHealth("");
         setMagic("");
         setPower("");
         setSide("");
+
+        const charactersString = localStorage.getItem("characters");
+        const oldCharacters = charactersString
+            ? JSON.parse(charactersString)
+            : [];
+        oldCharacters.push(newCharacter);
+        localStorage.setItem("characters", JSON.stringify(oldCharacters));
 
         console.table(newCharacter);
     };

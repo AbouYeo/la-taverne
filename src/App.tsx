@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
 import AllCharactersAPI from "./pages/all-characters-api/AllCharactersAPI";
-import AllCharactersLocal from "./pages/all-characters/AllCharactersLocal";
 import CreateCharacter from "./pages/create-character/CreateCharacter";
 import Homepage from "./pages/homepage/Homepage";
+import LocalCharacters from "./pages/local-characters/LocalCharacters";
 
 function App() {
     const routes = createBrowserRouter([
@@ -16,12 +16,12 @@ function App() {
                     element: <Homepage />,
                 },
                 {
-                    path: "tous-les-combattants-local",
-                    element: <AllCharactersLocal />,
-                },
-                {
                     path: "tous-les-combattants-api",
                     element: <AllCharactersAPI />,
+                },
+                {
+                    path: "/combattants-du-localstorage",
+                    element: <LocalCharacters />,
                 },
                 {
                     path: "/nouveau-character",
