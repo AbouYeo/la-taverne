@@ -8,7 +8,7 @@ export default function Homepage() {
             health: 40,
             magic: 35,
             power: 60,
-            side: "dark",
+            side: "angel",
             from: "manual",
         },
         {
