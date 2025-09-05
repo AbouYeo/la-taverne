@@ -1,9 +1,11 @@
 import { nanoid } from "nanoid";
 import { useState } from "react";
+import { Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ImageInput from "../../components/form-components/ImageInput";
 import Input from "../../components/form-components/Input";
 import SideInput from "../../components/form-components/SideInput copy";
+import { useCharactersContext } from "../../utilitis/useCharactersContext";
 
 export default function NewCharacter() {
     const [name, setName] = useState("");
@@ -12,6 +14,9 @@ export default function NewCharacter() {
     const [magic, setMagic] = useState("");
     const [power, setPower] = useState("");
     const [side, setSide] = useState("");
+    const [redirect, setRedirect] = useState(false);
+
+    const { setLocalCharacters } = useCharactersContext();
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -50,11 +55,16 @@ export default function NewCharacter() {
             ? JSON.parse(charactersString)
             : [];
         oldCharacters.push(newCharacter);
+        setLocalCharacters(oldCharacters);
         localStorage.setItem("characters", JSON.stringify(oldCharacters));
 
-        console.table(newCharacter);
+        setRedirect(true);
     };
 
+    //redirection vers la page des combattants locaux après création du personnage
+    if (redirect) {
+        return <Navigate to={"/combattants-du-localstorage"} />;
+    }
     return (
         <div className=" border border-neutral-100 rounded-xl bg-blue-50 shadow shadow-blue-200 hover:bg-blue-100 md:w-9/12 md:justify-self-center px-4 py-2">
             <h1 className="flex justify-self-center font-black text-2xl py-3 mb-7">
