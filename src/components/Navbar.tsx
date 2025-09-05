@@ -14,13 +14,10 @@ export default function Navbar() {
         {
             text: "Combattants locaux",
             path: "/combattants-du-localstorage",
-<<<<<<< HEAD
         },
         {
             text: "Tous les Combattants",
             path: "/tous-les-combattants",
-=======
->>>>>>> e3e3be7 (Combattants en local - beu)
         },
     ];
     return (
