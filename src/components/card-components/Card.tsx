@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import type { Character } from "../../assets/utilitis/Types";
+=======
+import type { Character } from "../../pages/utilitis/Types";
+>>>>>>> e3e3be7 (Combattants en local - beu)
 import Button from "./Button";
 import Statistiques from "./Statistiques";
 
@@ -36,7 +40,11 @@ export default function Card({ character }: CardProps) {
                             {character.from}
                         </p>
                     </div>
+<<<<<<< HEAD
                     {allStats.map((oneStat, index) => (
+=======
+                    {allStats.map((oneStat) => (
+>>>>>>> e3e3be7 (Combattants en local - beu)
                         <Statistiques
                             key={index}
                             stat={oneStat.stat}
