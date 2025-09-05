@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import ImageInput from "../../components/form-components/ImageInput";
@@ -26,6 +27,7 @@ export default function NewCharacter() {
         }
 
         const newCharacter = {
+            id: nanoid(6),
             name,
             image,
             health: parseInt(health),

@@ -15,6 +15,10 @@ export default function Navbar() {
             text: "Combattants locaux",
             path: "/combattants-du-localstorage",
         },
+        {
+            text: "Tous les Combattants",
+            path: "/tous-les-combattants",
+        },
     ];
     return (
         <nav className="flex items-center justify-between  border-b-neutral-500 p-4 customShadow">

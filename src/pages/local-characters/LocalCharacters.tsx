@@ -1,25 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Card from "../../components/card-components/Card";
+import { useCharactersContext } from "../../utilitis/useCharactersContext";
 
 export default function LocalStorageCharacters() {
-    const [lsCharacters, setLsCharacters] = useState([]);
-
-    const getCharacters = () => {
-        const charactersString = localStorage.getItem("characters");
-        const localStorageCharacters = charactersString
-            ? JSON.parse(charactersString)
-            : [];
-        console.table(lsCharacters);
-        setLsCharacters(localStorageCharacters);
-    };
-
-    useEffect(() => {
-        getCharacters();
-    }, []);
+    const { localCharacters } = useCharactersContext();
+    useEffect(() => {}, [localCharacters]);
 
     return (
-        <div className="min-h-1/2">
+        <>
             <h1 className="flex justify-self-center font-black text-2xl py-3 mb-7">
                 Tous les combattants en local
             </h1>
@@ -30,10 +19,10 @@ export default function LocalStorageCharacters() {
                 Créer un nouveau combattant
             </Link>
             <div className="flex flex-wrap items-center justify-center gap-8 ">
-                {lsCharacters.map((oneCharacter, index) => (
-                    <Card key={index} character={oneCharacter} />
+                {localCharacters.map((oneCharacter) => (
+                    <Card key={oneCharacter.id} character={oneCharacter} />
                 ))}
             </div>
-        </div>
+        </>
     );
 }

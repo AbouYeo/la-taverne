@@ -1,4 +1,4 @@
-import type { Character } from "../../pages/utilitis/Types";
+import type { Character } from "../../assets/utilitis/Types";
 import Button from "./Button";
 import Statistiques from "./Statistiques";
 
@@ -13,7 +13,6 @@ export default function Card({ character }: CardProps) {
         { stat: "Puissance", value: character.power, unity: "Atk" },
     ];
 
-    console.table(character);
     return (
         <div
             className={`ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden rounded-xl hover:scale-105 duration-300 shadow-${character.side}`}
@@ -37,8 +36,9 @@ export default function Card({ character }: CardProps) {
                             {character.from}
                         </p>
                     </div>
-                    {allStats.map((oneStat) => (
+                    {allStats.map((oneStat, index) => (
                         <Statistiques
+                            key={index}
                             stat={oneStat.stat}
                             value={oneStat.value}
                             unit={oneStat.unity}
