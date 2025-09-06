@@ -46,10 +46,10 @@ export default function Card({ character }: CardProps) {
                     ))}
                 </div>
                 <div className="flex justify-between mt-2">
-                    <Button color="bg-[#F194B4] hover:bg-red-600">
-                        Attaquer
+                    <Button color="bg-green-600 hover:bg-red-600">
+                        Modifier
                     </Button>
-                    <Button color="bg-blue-400">Defendre</Button>
+                    <Button color="bg-orange-400">Defendre</Button>
                 </div>
             </div>
         </div>
