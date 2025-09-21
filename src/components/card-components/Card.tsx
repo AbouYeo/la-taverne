@@ -1,5 +1,5 @@
+import { useCharacterManager } from "../../services/useCharacterManager";
 import type { Character } from "../../utilitis/Types";
-
 import Button from "./Button";
 import Statistiques from "./Statistiques";
 
@@ -13,10 +13,11 @@ export default function Card({ character }: CardProps) {
         { stat: "Magie", value: character.magic, unity: "PM" },
         { stat: "Puissance", value: character.power, unity: "Atk" },
     ];
+    const { deleteCharacter } = useCharacterManager();
 
     return (
         <div
-            className={`ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden rounded-xl hover:scale-105 duration-300 shadow-${character.side}`}
+            className={`ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden rounded-xl hover:scale-105 duration-300  shadow-${character.side}`}
         >
             <div className="w-[250px] h-[250px] overflow-hidden hover:">
                 <img
@@ -46,10 +47,24 @@ export default function Card({ character }: CardProps) {
                     ))}
                 </div>
                 <div className="flex justify-between mt-2">
-                    <Button color="bg-green-600 hover:bg-red-600">
-                        Modifier
+                    {character.from === "local" ? (
+                        <Button color="bg-green-600 hover:bg-green-700">
+                            Modifier
+                        </Button>
+                    ) : (
+                        <Button color="bg-green-600 hover:bg-green-700 cursor-not-allowed">
+                            Non modifiable
+                        </Button>
+                    )}
+
+                    <Button
+                        color="bg-red-400"
+                        onClick={() => {
+                            deleteCharacter(character.id);
+                        }}
+                    >
+                        Supprimer
                     </Button>
-                    <Button color="bg-orange-400">Defendre</Button>
                 </div>
             </div>
         </div>

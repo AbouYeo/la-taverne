@@ -1,24 +1,13 @@
 import { createContext, useEffect, useState, type ReactNode } from "react";
-import type { Character } from "../utilitis/Types";
+import type { Character, CharacterContextType } from "../utilitis/Types";
 import {
     addApiCharacters,
     addLocalCharacters,
     addManualCharacters,
-} from "./contextFunctions";
-
-type CharactersContextType = {
-    manualCharacters: Character[];
-    setManualCharacters: React.Dispatch<React.SetStateAction<Character[]>>;
-    apiCharacters: Character[];
-    setApiCharacters: React.Dispatch<React.SetStateAction<Character[]>>;
-    localCharacters: Character[];
-    setLocalCharacters: React.Dispatch<React.SetStateAction<Character[]>>;
-    allCharacters: Character[];
-    setAllCharacters: React.Dispatch<React.SetStateAction<Character[]>>;
-};
+} from "./ContextFunctions";
 
 export const CharactersContext = createContext<
-    CharactersContextType | undefined
+    CharacterContextType | undefined
 >(undefined);
 
 const CharactersContextProvider = ({ children }: { children: ReactNode }) => {
@@ -40,7 +29,7 @@ const CharactersContextProvider = ({ children }: { children: ReactNode }) => {
         addApiCharacters(setApiCharacters);
         addLocalCharacters(setLocalCharacters);
     }, []);
-    console.log(apiCharacters);
+
     useEffect(() => {
         addAllCharacters();
     }, [manualCharacters, localCharacters, apiCharacters]);
