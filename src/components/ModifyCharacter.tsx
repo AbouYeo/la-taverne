@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { useCharacterManager } from "../services/useCharacterManager";
+import type { Character } from "../utilitis/Types";
 import ImageInput from "./form-components/ImageInput";
 import Input from "./form-components/Input";
 import SideInput from "./form-components/SideInput copy";
@@ -12,13 +13,15 @@ export default function ModifyCharacter() {
 
     const { findCharacterById, updateCharacter } = useCharacterManager();
 
-    const [character, setCharacter] = useState({
+    const [character, setCharacter] = useState<Character>({
+        id: "",
         name: "",
         image: "",
         health: 0,
         power: 0,
         magic: 0,
         side: "",
+        from: "",
     });
 
     type FormInputEvent = {
@@ -42,7 +45,7 @@ export default function ModifyCharacter() {
             setCharacter(characterFound?.character);
         }
     }, [id]);
-    const handleSave = (e) => {
+    const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!id) return;
         updateCharacter(id, character);
