@@ -19,13 +19,17 @@ export function useCharacterManager() {
 
         for (const { data, from } of sources) {
             const character = data.find((char) => char.id === id);
-            return { character, from };
+            if (character) {
+                return { character, from };
+            }
         }
+        return undefined;
     }
 
     function deleteCharacter(id: string) {
         const characterData = findCharacterById(id);
         console.log("Suppression du Combattant avec l´id: ", id);
+        console.log(characterData?.from);
 
         switch (characterData?.from) {
             case "manual":

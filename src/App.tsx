@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
-import AllCharactersAPI from "./pages/all-characters-api/AllCharactersAPI";
 import AllCharacters from "./pages/all-characters/AllCharacters";
+import ApiCharacters from "./pages/api-characters/ApiCharacters";
 import CreateCharacter from "./pages/create-character/CreateCharacter";
 import Homepage from "./pages/homepage/Homepage";
 import LocalCharacters from "./pages/local-characters/LocalCharacters";
@@ -18,7 +18,7 @@ function App() {
                 },
                 {
                     path: "tous-les-combattants-api",
-                    element: <AllCharactersAPI />,
+                    element: <ApiCharacters />,
                 },
                 {
                     path: "/combattants-du-localstorage",
