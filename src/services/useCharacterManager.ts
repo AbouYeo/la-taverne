@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+import type { Character } from "../utilitis/Types";
 import { useCharactersContext } from "../utilitis/useCharactersContext";
 
 export function useCharacterManager() {
@@ -26,10 +28,27 @@ export function useCharacterManager() {
         return undefined;
     }
 
+    function deleteCharacterLocalStorage(id: string) {
+        const character = findCharacterById(id);
+        if (character) {
+            const charactersString = localStorage.getItem("characters");
+            const storedCharacters = charactersString
+                ? JSON.parse(charactersString)
+                : [];
+            const filteredCharacters = storedCharacters.filter(
+                (character: Character) => character.id !== id
+            );
+            localStorage.setItem(
+                "characters",
+                JSON.stringify(filteredCharacters)
+            );
+            setLocalCharacters(filteredCharacters);
+        } else {
+            toast.error("Combattant non trouvé");
+        }
+    }
     function deleteCharacter(id: string) {
         const characterData = findCharacterById(id);
-        console.log("Suppression du Combattant avec l´id: ", id);
-        console.log(characterData?.from);
 
         switch (characterData?.from) {
             case "manual":
@@ -38,11 +57,7 @@ export function useCharacterManager() {
                 );
                 break;
             case "local":
-                setLocalCharacters(
-                    localCharacters.filter(
-                        (character) => character.id != String(id)
-                    )
-                );
+                deleteCharacterLocalStorage(id);
                 break;
             case "api":
                 setApiCharacters(
@@ -56,7 +71,32 @@ export function useCharacterManager() {
         }
     }
 
+    function updateCharacter(id: string, updatedCharacter: Character) {
+        const charactersString = localStorage.getItem("characters");
+        const storedCharacters = charactersString
+            ? JSON.parse(charactersString)
+            : [];
+        const characterIndex = storedCharacters.findIndex(
+            (character: Character) => character.id == id
+        );
+        if (characterIndex !== -1) {
+            storedCharacters[characterIndex] = {
+                ...storedCharacters[characterIndex],
+                ...updatedCharacter,
+            };
+            localStorage.setItem(
+                "characters",
+                JSON.stringify(storedCharacters)
+            );
+            setLocalCharacters(storedCharacters);
+        } else {
+            console.error("Combattant non trouvé");
+        }
+    }
+
     return {
         deleteCharacter,
+        findCharacterById,
+        updateCharacter,
     };
 }

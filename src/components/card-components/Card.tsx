@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useCharacterManager } from "../../services/useCharacterManager";
 import type { Character } from "../../utilitis/Types";
 import Button from "./Button";
@@ -17,7 +18,7 @@ export default function Card({ character }: CardProps) {
 
     return (
         <div
-            className={`ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden rounded-xl hover:scale-105 duration-300  shadow-${character.side}`}
+            className={`ml-4 flex flex-col w-[250px] h-[400px] border border-neutral-500 overflow-hidden rounded-xl hover:scale-105 duration-300 shadow-${character.side}`}
         >
             <div className="w-[250px] h-[250px] overflow-hidden hover:">
                 <img
@@ -48,9 +49,11 @@ export default function Card({ character }: CardProps) {
                 </div>
                 <div className="flex justify-between mt-2">
                     {character.from === "local" ? (
-                        <Button color="bg-green-600 hover:bg-green-700">
-                            Modifier
-                        </Button>
+                        <Link to={`/modifier-personnage/${character.id}`}>
+                            <Button color="bg-green-600 hover:bg-green-700">
+                                Modifier
+                            </Button>
+                        </Link>
                     ) : (
                         <Button color="bg-green-600 hover:bg-green-700 cursor-not-allowed">
                             Non modifiable

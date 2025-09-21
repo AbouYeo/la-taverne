@@ -1,5 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./components/Layout";
+import ModifyCharacter from "./components/ModifyCharacter";
 import AllCharacters from "./pages/all-characters/AllCharacters";
 import ApiCharacters from "./pages/api-characters/ApiCharacters";
 import CreateCharacter from "./pages/create-character/CreateCharacter";
@@ -31,6 +32,10 @@ function App() {
                 {
                     path: "/nouveau-character",
                     element: <CreateCharacter />,
+                },
+                {
+                    path: "/modifier-personnage/:id",
+                    element: <ModifyCharacter />,
                 },
             ],
         },
